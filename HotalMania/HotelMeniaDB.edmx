@@ -1,0 +1,700 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="HotelManiaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="tblBooking">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserID" Type="bigint" />
+          <Property Name="HotelBookingID" Type="bigint" />
+          <Property Name="FoodBookingID" Type="bigint" />
+          <Property Name="TotalPrice" Type="money" />
+          <Property Name="Date" Type="datetime" />
+          <Property Name="startTime" Type="datetime" />
+          <Property Name="EndTime" Type="datetime" />
+          <Property Name="Status" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tblFood">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="100" />
+          <Property Name="PerPersonCharge" Type="money" />
+          <Property Name="Type" Type="nvarchar" MaxLength="100" />
+          <Property Name="IsAvailible" Type="bit" />
+        </EntityType>
+        <EntityType Name="tblFoodBooking">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OrderPrice" Type="money" />
+          <Property Name="orderDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tblFoodBookingDetails">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FoodBookingID" Type="bigint" />
+          <Property Name="FoodID" Type="bigint" />
+          <Property Name="OrderQuantity" Type="int" />
+          <Property Name="OrderTotalPrice" Type="money" />
+        </EntityType>
+        <EntityType Name="tblHotel">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" />
+          <Property Name="PerHourPPC" Type="nchar" MaxLength="10" />
+          <Property Name="TotalPersonCapacity" Type="bigint" />
+          <Property Name="Rating" Type="int" />
+          <Property Name="Location" Type="nvarchar" MaxLength="200" />
+          <Property Name="ParkingCapacity" Type="bigint" />
+          <Property Name="IsAvailible" Type="bit" />
+        </EntityType>
+        <EntityType Name="tblHotelBooking">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="HotelID" Type="bigint" />
+          <Property Name="BookedCapacity" Type="bigint" />
+          <Property Name="BookedCapacityPrice" Type="money" />
+          <Property Name="Date" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tblImages">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="HotelID" Type="bigint" />
+          <Property Name="FoodID" Type="bigint" />
+          <Property Name="Image" Type="nvarchar(max)" />
+          <Property Name="Description" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="tblRole">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" />
+          <Property Name="Discription" Type="nchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="tblUser">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ContactNo" Type="varchar" MaxLength="50" />
+          <Property Name="Address" Type="nvarchar" MaxLength="200" />
+          <Property Name="Image" Type="nvarchar(max)" />
+          <Property Name="RoleID" Type="bigint" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_tblBooking_tblFoodBooking">
+          <End Role="tblFoodBooking" Type="Self.tblFoodBooking" Multiplicity="0..1" />
+          <End Role="tblBooking" Type="Self.tblBooking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblFoodBooking">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tblBooking">
+              <PropertyRef Name="FoodBookingID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblBooking_tblHotelBooking">
+          <End Role="tblHotelBooking" Type="Self.tblHotelBooking" Multiplicity="0..1" />
+          <End Role="tblBooking" Type="Self.tblBooking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblHotelBooking">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tblBooking">
+              <PropertyRef Name="HotelBookingID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblBooking_tblUser">
+          <End Role="tblUser" Type="Self.tblUser" Multiplicity="0..1" />
+          <End Role="tblBooking" Type="Self.tblBooking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUser">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tblBooking">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblFoodBookingDetails_tblFood">
+          <End Role="tblFood" Type="Self.tblFood" Multiplicity="0..1" />
+          <End Role="tblFoodBookingDetails" Type="Self.tblFoodBookingDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblFood">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tblFoodBookingDetails">
+              <PropertyRef Name="FoodID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblFoodBookingDetails_tblFoodBooking">
+          <End Role="tblFoodBooking" Type="Self.tblFoodBooking" Multiplicity="0..1" />
+          <End Role="tblFoodBookingDetails" Type="Self.tblFoodBookingDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblFoodBooking">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tblFoodBookingDetails">
+              <PropertyRef Name="FoodBookingID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblHotelBooking_tblHotel">
+          <End Role="tblHotel" Type="Self.tblHotel" Multiplicity="0..1" />
+          <End Role="tblHotelBooking" Type="Self.tblHotelBooking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblHotel">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tblHotelBooking">
+              <PropertyRef Name="HotelID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblImages_tblFood">
+          <End Role="tblFood" Type="Self.tblFood" Multiplicity="0..1" />
+          <End Role="tblImages" Type="Self.tblImages" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblFood">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tblImages">
+              <PropertyRef Name="FoodID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblImages_tblHotel">
+          <End Role="tblHotel" Type="Self.tblHotel" Multiplicity="0..1" />
+          <End Role="tblImages" Type="Self.tblImages" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblHotel">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tblImages">
+              <PropertyRef Name="HotelID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblUser_tblRole">
+          <End Role="tblRole" Type="Self.tblRole" Multiplicity="1" />
+          <End Role="tblUser" Type="Self.tblUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblRole">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tblUser">
+              <PropertyRef Name="RoleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="HotelManiaModelStoreContainer">
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblBooking" EntityType="Self.tblBooking" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblFood" EntityType="Self.tblFood" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblFoodBooking" EntityType="Self.tblFoodBooking" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblFoodBookingDetails" EntityType="Self.tblFoodBookingDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblHotel" EntityType="Self.tblHotel" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblHotelBooking" EntityType="Self.tblHotelBooking" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblImages" EntityType="Self.tblImages" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblRole" EntityType="Self.tblRole" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblUser" EntityType="Self.tblUser" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_tblBooking_tblFoodBooking" Association="Self.FK_tblBooking_tblFoodBooking">
+            <End Role="tblFoodBooking" EntitySet="tblFoodBooking" />
+            <End Role="tblBooking" EntitySet="tblBooking" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblBooking_tblHotelBooking" Association="Self.FK_tblBooking_tblHotelBooking">
+            <End Role="tblHotelBooking" EntitySet="tblHotelBooking" />
+            <End Role="tblBooking" EntitySet="tblBooking" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblBooking_tblUser" Association="Self.FK_tblBooking_tblUser">
+            <End Role="tblUser" EntitySet="tblUser" />
+            <End Role="tblBooking" EntitySet="tblBooking" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblFoodBookingDetails_tblFood" Association="Self.FK_tblFoodBookingDetails_tblFood">
+            <End Role="tblFood" EntitySet="tblFood" />
+            <End Role="tblFoodBookingDetails" EntitySet="tblFoodBookingDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblFoodBookingDetails_tblFoodBooking" Association="Self.FK_tblFoodBookingDetails_tblFoodBooking">
+            <End Role="tblFoodBooking" EntitySet="tblFoodBooking" />
+            <End Role="tblFoodBookingDetails" EntitySet="tblFoodBookingDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblHotelBooking_tblHotel" Association="Self.FK_tblHotelBooking_tblHotel">
+            <End Role="tblHotel" EntitySet="tblHotel" />
+            <End Role="tblHotelBooking" EntitySet="tblHotelBooking" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblImages_tblFood" Association="Self.FK_tblImages_tblFood">
+            <End Role="tblFood" EntitySet="tblFood" />
+            <End Role="tblImages" EntitySet="tblImages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblImages_tblHotel" Association="Self.FK_tblImages_tblHotel">
+            <End Role="tblHotel" EntitySet="tblHotel" />
+            <End Role="tblImages" EntitySet="tblImages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblUser_tblRole" Association="Self.FK_tblUser_tblRole">
+            <End Role="tblRole" EntitySet="tblRole" />
+            <End Role="tblUser" EntitySet="tblUser" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="HotelManiaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="tblBooking">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserID" Type="Int64" />
+          <Property Name="HotelBookingID" Type="Int64" />
+          <Property Name="FoodBookingID" Type="Int64" />
+          <Property Name="TotalPrice" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Date" Type="DateTime" Precision="3" />
+          <Property Name="startTime" Type="DateTime" Precision="3" />
+          <Property Name="EndTime" Type="DateTime" Precision="3" />
+          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tblFoodBooking" Relationship="Self.FK_tblBooking_tblFoodBooking" FromRole="tblBooking" ToRole="tblFoodBooking" />
+          <NavigationProperty Name="tblHotelBooking" Relationship="Self.FK_tblBooking_tblHotelBooking" FromRole="tblBooking" ToRole="tblHotelBooking" />
+          <NavigationProperty Name="tblUser" Relationship="Self.FK_tblBooking_tblUser" FromRole="tblBooking" ToRole="tblUser" />
+        </EntityType>
+        <EntityType Name="tblFood">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="PerPersonCharge" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Type" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="IsAvailible" Type="Boolean" />
+          <NavigationProperty Name="tblFoodBookingDetails" Relationship="Self.FK_tblFoodBookingDetails_tblFood" FromRole="tblFood" ToRole="tblFoodBookingDetails" />
+          <NavigationProperty Name="tblImages" Relationship="Self.FK_tblImages_tblFood" FromRole="tblFood" ToRole="tblImages" />
+        </EntityType>
+        <EntityType Name="tblFoodBooking">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OrderPrice" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="orderDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="tblBookings" Relationship="Self.FK_tblBooking_tblFoodBooking" FromRole="tblFoodBooking" ToRole="tblBooking" />
+          <NavigationProperty Name="tblFoodBookingDetails" Relationship="Self.FK_tblFoodBookingDetails_tblFoodBooking" FromRole="tblFoodBooking" ToRole="tblFoodBookingDetails" />
+        </EntityType>
+        <EntityType Name="tblFoodBookingDetail">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FoodBookingID" Type="Int64" />
+          <Property Name="FoodID" Type="Int64" />
+          <Property Name="OrderQuantity" Type="Int32" />
+          <Property Name="OrderTotalPrice" Type="Decimal" Precision="19" Scale="4" />
+          <NavigationProperty Name="tblFood" Relationship="Self.FK_tblFoodBookingDetails_tblFood" FromRole="tblFoodBookingDetails" ToRole="tblFood" />
+          <NavigationProperty Name="tblFoodBooking" Relationship="Self.FK_tblFoodBookingDetails_tblFoodBooking" FromRole="tblFoodBookingDetails" ToRole="tblFoodBooking" />
+        </EntityType>
+        <EntityType Name="tblHotel">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="PerHourPPC" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="TotalPersonCapacity" Type="Int64" />
+          <Property Name="Rating" Type="Int32" />
+          <Property Name="Location" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="ParkingCapacity" Type="Int64" />
+          <Property Name="IsAvailible" Type="Boolean" />
+          <NavigationProperty Name="tblHotelBookings" Relationship="Self.FK_tblHotelBooking_tblHotel" FromRole="tblHotel" ToRole="tblHotelBooking" />
+          <NavigationProperty Name="tblImages" Relationship="Self.FK_tblImages_tblHotel" FromRole="tblHotel" ToRole="tblImages" />
+        </EntityType>
+        <EntityType Name="tblHotelBooking">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="HotelID" Type="Int64" />
+          <Property Name="BookedCapacity" Type="Int64" />
+          <Property Name="BookedCapacityPrice" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Date" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="tblBookings" Relationship="Self.FK_tblBooking_tblHotelBooking" FromRole="tblHotelBooking" ToRole="tblBooking" />
+          <NavigationProperty Name="tblHotel" Relationship="Self.FK_tblHotelBooking_tblHotel" FromRole="tblHotelBooking" ToRole="tblHotel" />
+        </EntityType>
+        <EntityType Name="tblImage">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="HotelID" Type="Int64" />
+          <Property Name="FoodID" Type="Int64" />
+          <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tblFood" Relationship="Self.FK_tblImages_tblFood" FromRole="tblImages" ToRole="tblFood" />
+          <NavigationProperty Name="tblHotel" Relationship="Self.FK_tblImages_tblHotel" FromRole="tblImages" ToRole="tblHotel" />
+        </EntityType>
+        <EntityType Name="tblRole">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Discription" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="tblUsers" Relationship="Self.FK_tblUser_tblRole" FromRole="tblRole" ToRole="tblUser" />
+        </EntityType>
+        <EntityType Name="tblUser">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ContactNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Address" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="RoleID" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="tblBookings" Relationship="Self.FK_tblBooking_tblUser" FromRole="tblUser" ToRole="tblBooking" />
+          <NavigationProperty Name="tblRole" Relationship="Self.FK_tblUser_tblRole" FromRole="tblUser" ToRole="tblRole" />
+        </EntityType>
+        <Association Name="FK_tblBooking_tblFoodBooking">
+          <End Role="tblFoodBooking" Type="Self.tblFoodBooking" Multiplicity="0..1" />
+          <End Role="tblBooking" Type="Self.tblBooking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblFoodBooking">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tblBooking">
+              <PropertyRef Name="FoodBookingID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblBooking_tblHotelBooking">
+          <End Role="tblHotelBooking" Type="Self.tblHotelBooking" Multiplicity="0..1" />
+          <End Role="tblBooking" Type="Self.tblBooking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblHotelBooking">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tblBooking">
+              <PropertyRef Name="HotelBookingID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblBooking_tblUser">
+          <End Role="tblUser" Type="Self.tblUser" Multiplicity="0..1" />
+          <End Role="tblBooking" Type="Self.tblBooking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUser">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tblBooking">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblFoodBookingDetails_tblFood">
+          <End Role="tblFood" Type="Self.tblFood" Multiplicity="0..1" />
+          <End Role="tblFoodBookingDetails" Type="Self.tblFoodBookingDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblFood">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tblFoodBookingDetails">
+              <PropertyRef Name="FoodID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblImages_tblFood">
+          <End Role="tblFood" Type="Self.tblFood" Multiplicity="0..1" />
+          <End Role="tblImages" Type="Self.tblImage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblFood">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tblImages">
+              <PropertyRef Name="FoodID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblFoodBookingDetails_tblFoodBooking">
+          <End Role="tblFoodBooking" Type="Self.tblFoodBooking" Multiplicity="0..1" />
+          <End Role="tblFoodBookingDetails" Type="Self.tblFoodBookingDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblFoodBooking">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tblFoodBookingDetails">
+              <PropertyRef Name="FoodBookingID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblHotelBooking_tblHotel">
+          <End Role="tblHotel" Type="Self.tblHotel" Multiplicity="0..1" />
+          <End Role="tblHotelBooking" Type="Self.tblHotelBooking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblHotel">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tblHotelBooking">
+              <PropertyRef Name="HotelID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblImages_tblHotel">
+          <End Role="tblHotel" Type="Self.tblHotel" Multiplicity="0..1" />
+          <End Role="tblImages" Type="Self.tblImage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblHotel">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tblImages">
+              <PropertyRef Name="HotelID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblUser_tblRole">
+          <End Role="tblRole" Type="Self.tblRole" Multiplicity="1" />
+          <End Role="tblUser" Type="Self.tblUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblRole">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tblUser">
+              <PropertyRef Name="RoleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="HotelManiaEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="tblBookings" EntityType="Self.tblBooking" />
+          <EntitySet Name="tblFoods" EntityType="Self.tblFood" />
+          <EntitySet Name="tblFoodBookings" EntityType="Self.tblFoodBooking" />
+          <EntitySet Name="tblFoodBookingDetails" EntityType="Self.tblFoodBookingDetail" />
+          <EntitySet Name="tblHotels" EntityType="Self.tblHotel" />
+          <EntitySet Name="tblHotelBookings" EntityType="Self.tblHotelBooking" />
+          <EntitySet Name="tblImages" EntityType="Self.tblImage" />
+          <EntitySet Name="tblRoles" EntityType="Self.tblRole" />
+          <EntitySet Name="tblUsers" EntityType="Self.tblUser" />
+          <AssociationSet Name="FK_tblBooking_tblFoodBooking" Association="Self.FK_tblBooking_tblFoodBooking">
+            <End Role="tblFoodBooking" EntitySet="tblFoodBookings" />
+            <End Role="tblBooking" EntitySet="tblBookings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblBooking_tblHotelBooking" Association="Self.FK_tblBooking_tblHotelBooking">
+            <End Role="tblHotelBooking" EntitySet="tblHotelBookings" />
+            <End Role="tblBooking" EntitySet="tblBookings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblBooking_tblUser" Association="Self.FK_tblBooking_tblUser">
+            <End Role="tblUser" EntitySet="tblUsers" />
+            <End Role="tblBooking" EntitySet="tblBookings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblFoodBookingDetails_tblFood" Association="Self.FK_tblFoodBookingDetails_tblFood">
+            <End Role="tblFood" EntitySet="tblFoods" />
+            <End Role="tblFoodBookingDetails" EntitySet="tblFoodBookingDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblImages_tblFood" Association="Self.FK_tblImages_tblFood">
+            <End Role="tblFood" EntitySet="tblFoods" />
+            <End Role="tblImages" EntitySet="tblImages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblFoodBookingDetails_tblFoodBooking" Association="Self.FK_tblFoodBookingDetails_tblFoodBooking">
+            <End Role="tblFoodBooking" EntitySet="tblFoodBookings" />
+            <End Role="tblFoodBookingDetails" EntitySet="tblFoodBookingDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblHotelBooking_tblHotel" Association="Self.FK_tblHotelBooking_tblHotel">
+            <End Role="tblHotel" EntitySet="tblHotels" />
+            <End Role="tblHotelBooking" EntitySet="tblHotelBookings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblImages_tblHotel" Association="Self.FK_tblImages_tblHotel">
+            <End Role="tblHotel" EntitySet="tblHotels" />
+            <End Role="tblImages" EntitySet="tblImages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblUser_tblRole" Association="Self.FK_tblUser_tblRole">
+            <End Role="tblRole" EntitySet="tblRoles" />
+            <End Role="tblUser" EntitySet="tblUsers" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="HotelManiaModelStoreContainer" CdmEntityContainer="HotelManiaEntities">
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="HotelManiaModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblBookings">
+            <EntityTypeMapping TypeName="HotelManiaModel.tblBooking">
+              <MappingFragment StoreEntitySet="tblBooking">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="HotelBookingID" ColumnName="HotelBookingID" />
+                <ScalarProperty Name="FoodBookingID" ColumnName="FoodBookingID" />
+                <ScalarProperty Name="TotalPrice" ColumnName="TotalPrice" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="startTime" ColumnName="startTime" />
+                <ScalarProperty Name="EndTime" ColumnName="EndTime" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblFoods">
+            <EntityTypeMapping TypeName="HotelManiaModel.tblFood">
+              <MappingFragment StoreEntitySet="tblFood">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="PerPersonCharge" ColumnName="PerPersonCharge" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="IsAvailible" ColumnName="IsAvailible" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblFoodBookings">
+            <EntityTypeMapping TypeName="HotelManiaModel.tblFoodBooking">
+              <MappingFragment StoreEntitySet="tblFoodBooking">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="OrderPrice" ColumnName="OrderPrice" />
+                <ScalarProperty Name="orderDate" ColumnName="orderDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblFoodBookingDetails">
+            <EntityTypeMapping TypeName="HotelManiaModel.tblFoodBookingDetail">
+              <MappingFragment StoreEntitySet="tblFoodBookingDetails">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="FoodBookingID" ColumnName="FoodBookingID" />
+                <ScalarProperty Name="FoodID" ColumnName="FoodID" />
+                <ScalarProperty Name="OrderQuantity" ColumnName="OrderQuantity" />
+                <ScalarProperty Name="OrderTotalPrice" ColumnName="OrderTotalPrice" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblHotels">
+            <EntityTypeMapping TypeName="HotelManiaModel.tblHotel">
+              <MappingFragment StoreEntitySet="tblHotel">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="PerHourPPC" ColumnName="PerHourPPC" />
+                <ScalarProperty Name="TotalPersonCapacity" ColumnName="TotalPersonCapacity" />
+                <ScalarProperty Name="Rating" ColumnName="Rating" />
+                <ScalarProperty Name="Location" ColumnName="Location" />
+                <ScalarProperty Name="ParkingCapacity" ColumnName="ParkingCapacity" />
+                <ScalarProperty Name="IsAvailible" ColumnName="IsAvailible" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblHotelBookings">
+            <EntityTypeMapping TypeName="HotelManiaModel.tblHotelBooking">
+              <MappingFragment StoreEntitySet="tblHotelBooking">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="HotelID" ColumnName="HotelID" />
+                <ScalarProperty Name="BookedCapacity" ColumnName="BookedCapacity" />
+                <ScalarProperty Name="BookedCapacityPrice" ColumnName="BookedCapacityPrice" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblImages">
+            <EntityTypeMapping TypeName="HotelManiaModel.tblImage">
+              <MappingFragment StoreEntitySet="tblImages">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="HotelID" ColumnName="HotelID" />
+                <ScalarProperty Name="FoodID" ColumnName="FoodID" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblRoles">
+            <EntityTypeMapping TypeName="HotelManiaModel.tblRole">
+              <MappingFragment StoreEntitySet="tblRole">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Discription" ColumnName="Discription" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblUsers">
+            <EntityTypeMapping TypeName="HotelManiaModel.tblUser">
+              <MappingFragment StoreEntitySet="tblUser">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="ContactNo" ColumnName="ContactNo" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

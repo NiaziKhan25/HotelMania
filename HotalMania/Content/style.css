@@ -1,0 +1,24 @@
+#NavBar {
+    height:60px;
+}
+#search-form{
+    margin-top:-10px;
+    color:white;
+}
+#navbarSupportedContent{
+    /*margin-top:auto;*/ 
+}
+#masterform
+{
+    margin-top:-50px;
+}
+.theme-primary-back
+{
+    background:#2bbbad;
+}
+.theme-background-dark{
+    background-color:#414a5c;
+}
+.hotal-card-body{
+    margin-top:-23px;
+}
