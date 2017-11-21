@@ -511,6 +511,7 @@
     <Compile Include="Admin\HotalIndex.aspx.designer.cs">
       <DependentUpon>HotalIndex.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Admin\Link.cs" />
     <Compile Include="Admin\UserIndex.aspx.cs">
       <DependentUpon>UserIndex.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
