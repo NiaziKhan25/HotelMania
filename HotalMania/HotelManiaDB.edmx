@@ -63,7 +63,7 @@
           </Key>
           <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="100" />
-          <Property Name="PerHourPPC" Type="nchar" MaxLength="10" />
+          <Property Name="PerHourPPC" Type="money" />
           <Property Name="TotalPersonCapacity" Type="bigint" />
           <Property Name="Rating" Type="int" />
           <Property Name="Location" Type="nvarchar" MaxLength="200" />
@@ -339,7 +339,7 @@
           </Key>
           <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="PerHourPPC" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="PerHourPPC" Type="Decimal" Precision="19" Scale="4" />
           <Property Name="TotalPersonCapacity" Type="Int64" />
           <Property Name="Rating" Type="Int32" />
           <Property Name="Location" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />

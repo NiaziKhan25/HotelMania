@@ -23,7 +23,7 @@ namespace HotalMania
     
         public long ID { get; set; }
         public string Name { get; set; }
-        public string PerHourPPC { get; set; }
+        public Nullable<decimal> PerHourPPC { get; set; }
         public Nullable<long> TotalPersonCapacity { get; set; }
         public Nullable<int> Rating { get; set; }
         public string Location { get; set; }

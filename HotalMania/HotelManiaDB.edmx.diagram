@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="4582fe429ebe4356be40533b7e71cd2c" Name="Diagram1">
+      <Diagram DiagramId="36a9da1bce134fe8adcdd8ad6ec82c83" Name="Diagram1">
         <EntityTypeShape EntityType="HotelManiaModel.sysdiagram" Width="1.5" PointX="5.75" PointY="9.375" IsExpanded="true" />
         <EntityTypeShape EntityType="HotelManiaModel.tblBooking" Width="1.5" PointX="5.25" PointY="4.25" IsExpanded="true" />
         <EntityTypeShape EntityType="HotelManiaModel.tblFood" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />

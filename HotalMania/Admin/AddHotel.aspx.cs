@@ -21,7 +21,7 @@ namespace HotalMania.Admin
             tblHotel obj = new tblHotel();
             obj.Name = this.txt_hotel_name.Value;
             obj.ParkingCapacity = Convert.ToInt64(this.txt_parking_capacity.Value);
-            obj.PerHourPPC = this.txt_PPC.Value;
+            obj.PerHourPPC = Convert.ToDecimal(this.txt_PPC.Value);
             obj.Rating = 4;
             obj.TotalPersonCapacity = Convert.ToInt64(this.txt_guest_capacity.Value);
             obj.IsAvailible = this.checkbox_availability1.Checked;
