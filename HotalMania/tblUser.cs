@@ -28,6 +28,7 @@ namespace HotalMania
         public string Address { get; set; }
         public string Image { get; set; }
         public long RoleID { get; set; }
+        public Nullable<bool> IsActive { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblBooking> tblBookings { get; set; }

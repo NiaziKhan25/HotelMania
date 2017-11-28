@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Web;
 using System.Web.Routing;
 using Microsoft.AspNet.FriendlyUrls;
+using System.Data.SqlClient;
 
 namespace HotalMania
 {
@@ -12,7 +13,7 @@ namespace HotalMania
         {
             var settings = new FriendlyUrlSettings();
             settings.AutoRedirectMode = RedirectMode.Permanent;
-            routes.EnableFriendlyUrls(settings);
+            routes.EnableFriendlyUrls(settings); 
         }
     }
 }

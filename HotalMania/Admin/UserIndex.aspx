@@ -1,8 +1,12 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin/Admin.Master" AutoEventWireup="true" CodeBehind="UserIndex.aspx.cs" Inherits="HotalMania.Admin.UserIndex" %>
+<%@ Register Assembly="Telerik.Web.UI" Namespace="Telerik.Web.UI" TagPrefix="telerik" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="bodyContentPlaceHolder" runat="server">
-      <div>
+    <asp:ScriptManager ID="ScriptManager1" runat="server">
+    </asp:ScriptManager>
+    <div>
         <a href="AddUser.aspx" class="material-icons">Add New
              <div class="ripple-container"></div>
         </a>
@@ -25,34 +29,78 @@
                         </div>
                     </div>
                 </div>
-                <div class="card-content">              
-                            <table class="table" id="tbl1" runat="server">
-                                <thead>
-                                    <th>Name</th>
-                                    <th>Location</th>
-                                    <th>Person Capacity</th>
-                                    <th>Per Person PPC</th>
-                                    <th>Actions</th>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>Serana Hotal</td>
-                                        <td>Islamabad"</td>
-                                        <td>500</td>
-                                        <td>$50</td>
-                                        <td class="td-actions text-right">
-                                            <button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-simple btn-xs">
-                                                <i class="material-icons">edit</i>
-                                            </button>
-                                            <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs">
-                                                <i class="material-icons">close</i>
-                                            </button>
-                                        </td>
-                                    </tr>
-                                    
-                                </tbody>
-                            </table>
-                        </div>
+                 <div class="card-content">
+                     <div class="tab-content">
+                         <telerik:RadGrid ID="rgListing" runat="server" AutoGenerateColumns="false" GridLines="None" AllowSorting="true"
+                             AllowPaging="true" PageSize="20" PagerStyle-Mode="NumericPages" OnUpdateCommand="rgListing_UpdateCommand" OnEditCommand="rgListing_EditCommand">
+                             <MasterTableView EditMode="Inplace">
+                                 <Columns>
+                                     <telerik:GridTemplateColumn UniqueName="Column0">
+                                         <ItemTemplate>
+                                             <asp:TextBox type="hidden" runat="server" ID="ID" value='<%# Eval("ID")%>'></asp:TextBox>
+                                         </ItemTemplate>
+                                     </telerik:GridTemplateColumn>
+                                     <telerik:GridTemplateColumn UniqueName="Column1">
+                                         <ItemTemplate>
+                                             <asp:TextBox runat="server" type="text" ReadOnly="false" ID="Name" value='<%# Eval("UserName")%>' Text='<%# Eval("UserName")%>'> </asp:TextBox>
+                                         </ItemTemplate>
+                                         <HeaderTemplate>
+                                             <asp:Label ID="Label1" runat="server">User Name:</asp:Label>
+                                         </HeaderTemplate>
+                                     </telerik:GridTemplateColumn>
+                                     <telerik:GridTemplateColumn UniqueName="Column2">
+                                         <ItemTemplate>
+                                             <asp:TextBox runat="server" type="email" ReadOnly="true" ID="Email" value='<%# Eval("Email")%>' Text='<%# Eval("Email")%>'> </asp:TextBox>
+                                         </ItemTemplate>
+                                         <HeaderTemplate>
+                                             <asp:Label ID="Label2" runat="server">Email:</asp:Label>
+                                         </HeaderTemplate>
+                                     </telerik:GridTemplateColumn>
+                                     <telerik:GridTemplateColumn UniqueName="Column3">
+                                         <ItemTemplate>
+                                             <asp:TextBox runat="server" type="tel" ReadOnly="false" ID="ContactNo" value='<%# Eval("ContactNo")%>' Text='<%# Eval("ContactNo")%>'> </asp:TextBox>
+                                         </ItemTemplate>
+                                         <HeaderTemplate>
+                                             <asp:Label ID="Label3" runat="server">Contact No:</asp:Label>
+                                         </HeaderTemplate>
+                                     </telerik:GridTemplateColumn>
+                                     <telerik:GridTemplateColumn UniqueName="Column4">
+                                         <ItemTemplate>
+                                             <asp:TextBox runat="server" type="text" ReadOnly="false" ID="Address" value='<%# Eval("Address")%>' Text='<%# Eval("Address")%>'> </asp:TextBox>
+                                         </ItemTemplate>
+                                         <HeaderTemplate>
+                                             <asp:Label ID="Label4" runat="server">Address:</asp:Label>
+                                         </HeaderTemplate>
+                                     </telerik:GridTemplateColumn>
+                                      <telerik:GridTemplateColumn UniqueName="Column5">
+                                         <ItemTemplate>
+                                             <asp:TextBox runat="server" type="text" ReadOnly="true" ID="UserRole" value='<%# Eval("tblRole.Name")%>' Text='<%# Eval("tblRole.Name")%>'> </asp:TextBox>
+                                         </ItemTemplate>
+                                         <HeaderTemplate>
+                                             <asp:Label ID="Label4" runat="server">User Role:</asp:Label>
+                                         </HeaderTemplate>
+                                     </telerik:GridTemplateColumn>                                  
+                                     <telerik:GridTemplateColumn UniqueName="Column6">
+                                         <ItemTemplate>
+                                             <asp:Button class="btn btn-primary fa-edit btn-xs btn-round " ID="btnUpdate" Text="Update" CommandName="Update" CommandArgument='<%# Eval("ID")%>' runat="server" />
+                                         </ItemTemplate>
+                                         <HeaderTemplate >
+                                             <asp:Label ID="Label7" runat="server">Actions</asp:Label>
+                                         </HeaderTemplate>
+                                     </telerik:GridTemplateColumn>
+                                     <telerik:GridTemplateColumn UniqueName="Column7">                                        
+                                         <ItemTemplate>
+                                             <asp:Button class="btn btn-primary fa-edit btn-xs btn-rose " ID="btnDetail" Text="Detail & Edit" CommandName="Edit" CommandArgument='<%# Eval("ID")%>' runat="server" />
+                                         </ItemTemplate>
+                                     </telerik:GridTemplateColumn>
+                                 </Columns>
+                             </MasterTableView>
+                             <ClientSettings EnablePostBackOnRowClick="true">
+                                 <Selecting AllowRowSelect="false" />
+                             </ClientSettings>
+                         </telerik:RadGrid>
+                     </div>
+                 </div>
             </div>
         </div>
      </div>

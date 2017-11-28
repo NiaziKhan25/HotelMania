@@ -54,7 +54,7 @@ namespace HotalMania.Admin
         {
             GridEditableItem editedItem = e.Item as GridEditableItem;
             string FoodID = (editedItem["Column0"].Controls[1] as TextBox).Text;
-            string HotelName = (editedItem["Column1"].Controls[1] as TextBox).Text;
+            string FoodName = (editedItem["Column1"].Controls[1] as TextBox).Text;
             string PerPersonCharge = (editedItem["Column2"].Controls[1] as TextBox).Text;
             string FoodType = (editedItem["Column3"].Controls[1] as TextBox).Text;
             bool? IsAvailible = (editedItem["Column4"].Controls[1] as CheckBox).Checked;
@@ -64,7 +64,7 @@ namespace HotalMania.Admin
                 tblFood obj = db.tblFoods.Where(s => s.ID == ID).FirstOrDefault();
                 if (obj != null)
                 {
-                    obj.Name = HotelName;
+                    obj.Name = FoodName;
                     obj.PerPersonCharge = Convert.ToDecimal(PerPersonCharge);
                     obj.Type = FoodType;
                     obj.IsAvailible = IsAvailible;
@@ -78,6 +78,15 @@ namespace HotalMania.Admin
             {
                 ErrMsg = ex.Message;
             }
+        }
+
+        protected void rgListing_EditCommand(object sender, GridCommandEventArgs e)
+        {
+            GridEditableItem editedItem = e.Item as GridEditableItem;
+            string FoodID = (editedItem["Column0"].Controls[1] as TextBox).Text;
+            long ID = Convert.ToInt64(FoodID);
+            Response.Redirect("EditFood.aspx?ID=" + ID.ToString());
+
         }
     }
 }

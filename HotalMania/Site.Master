@@ -84,7 +84,7 @@
 </head>
 <body>
     <form runat="server" id="masterform">
-        <asp:ScriptManager runat="server">
+        <asp:ScriptManager runat="server" >
             <Scripts>
                 <%--To learn more about bundling scripts in ScriptManager see http://go.microsoft.com/fwlink/?LinkID=301884 --%>
                 <%--Framework Scripts--%>
@@ -104,7 +104,7 @@
                 <%--Site Scripts--%>
             </Scripts>
         </asp:ScriptManager>
-
+        
         <!--Navbar-->
         <!--Navbar-->
             <nav class="navbar navbar-expand-lg navbar-dark" id="NavBar">
@@ -138,160 +138,16 @@
                                 <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search" id="search-form">
                             </form>
                         </li>
-                  
-                        <%--<!-- Dropdown -->
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
-                            <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
-                                <a class="dropdown-item" href="#">Action</a>
-                                <a class="dropdown-item" href="#">Another action</a>
-                                <a class="dropdown-item" href="#">Something else here</a>
-                            </div>
-                        </li>--%>
-
                     </ul>
-                    <button type="button" class="btn btn-outline-info btn-rounded waves-effect btn-sm" data-toggle="modal" data-target="#LoginSignUpModal">Login</button>
-
-                    <!-- Links -->
-
-                    
+<%--                    <button type="button" class="btn btn-outline-info btn-rounded waves-effect btn-sm" data-toggle="modal" data-target="#LoginSignUpModal">Login</button>--%>
+                    <a  class="btn btn-outline-info btn-rounded waves-effect btn-sm"  href="Login.aspx" >Login</a>
                     	
                 </div>
                 <!-- Collapsible content -->
 
             </nav>
             <!--/.Navbar-->
-        <%-- login modal --%>
-            <!--Modal: Login / Register Form-->
-                <div class="modal fade" id="LoginSignUpModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                    <div class="modal-dialog cascading-modal" role="document">
-                        <!--Content-->
-                        <div class="modal-content" style="border-radius:10px;">
 
-                            <!--Modal cascading tabs-->
-                            <div class="modal-c-tabs">
-
-                                <!-- Nav tabs -->
-                                <ul class="nav nav-tabs tabs-2 darken-3 theme-background-dark" role="tablist" style="border-radius:50px;background-color:#414a5c;">
-                                    <li class="nav-item btn-rounded">
-                                        <a class="nav-link active" data-toggle="tab" href="#panel7" role="tab"><i class="fa fa-user mr-1"></i> Login</a>
-                                    </li>
-                                    <li class="nav-item btn-rounded">
-                                        <a class="nav-link" data-toggle="tab" href="#panel8" role="tab"><i class="fa fa-user-plus mr-1"></i> Register</a>
-                                    </li>
-                                </ul>
-
-                                <div class="tab-content">
-                                    <!--Panel 7-->
-                                    <div class="tab-pane fade in show active" id="panel7" role="tabpanel">
-                                <!-- Tab panels -->
-
-                                        <!--Body-->
-                                        <div class="modal-body mb-1">
-                                            <div class="md-form form-sm">
-                                                <i class="fa fa-envelope prefix"></i>
-                                                <input type="email" id="form22" class="form-control validate">
-                                                <label data-error="wrong" data-success="right" for="form22">Your email</label>
-                                            </div>
-
-                                            <div class="md-form form-sm" style="margin-top:45px;">
-                                                <i class="fa fa-lock prefix"></i>
-                                                <input type="password" id="form23" class="form-control validate">
-                                                <label data-error="wrong" data-success="right" for="form23">Your password</label>
-                                            </div>
-                                            <div class="text-center mt-2">
-                                                <button class="btn btn-info btn-rounded">Log in <i class="fa fa-sign-in ml-1"></i></button>
-                                            </div>
-                                        </div>
-                                        <!--Footer-->
-                                        <div class="modal-footer">
-                                            <div class="options text-center text-md-right mt-1 btn-rounded">
-                                                <p>Not a member? <a href="#" class="blue-text">Sign Up</a></p>
-                                                <p>Forgot <a href="#" class="blue-text">Password?</a></p>
-                                            </div>
-                                            <button type="button" class="btn btn-outline-info waves-effect ml-auto btn-rounded btn-sm" data-dismiss="modal">Close</button>
-                                        </div>
-
-                                    </div>
-                                    <!--/.Panel 7-->
-
-                                    <!--Panel 8-->
-                                    <div class="tab-pane fade" id="panel8" role="tabpanel">
-
-                                        <div class="row col-sm-12">
-                                            <!--Body-->
-                                            <div class="modal-body">
-                                                <div class="row">
-                                                    <div class="md-form form-sm col-sm-6">
-                                                        <i class="fa fa-user prefix"></i>
-                                                        <input type="text" id="form28" class="form-control validate">
-                                                        <label data-error="wrong" data-success="right" for="form28">Username</label>
-                                                    </div>
-
-                                                    <div class="md-form form-sm col-sm-6">
-                                                        <i class="fa fa-envelope prefix"></i>
-                                                        <input type="email" id="form24" class="form-control validate">
-                                                        <label data-error="wrong" data-success="right" for="form24">Your email</label>
-                                                    </div>    
-                                                </div>
-                                            
-                                                <div class="row">
-                                                    <div class="md-form form-sm col-sm-6" >
-                                                        <i class="fa fa-lock prefix"></i>
-                                                        <input type="password" id="form25" class="form-control validate">
-                                                        <label data-error="wrong" data-success="right" for="form25">password</label>
-                                                    </div>
-
-                                                    <div class="md-form form-sm col-sm-6">
-                                                        <i class="fa fa-lock prefix"></i>
-                                                        <input type="password" id="form26" class="form-control validate">
-                                                        <label data-error="wrong" data-success="right" for="form26">Confirm password</label>
-                                                    </div>
-                                                </div>
-                                                
-                                                <div class="row">
-                                                    <div class="md-form form-sm col-sm-6">
-                                                        <i class="fa fa-phone prefix"></i>
-                                                        <input type="number" id="form27" class="form-control validate">
-                                                        <label data-error="wrong" data-success="right" for="form27">Contact No</label>
-                                                    </div>
-                                                    <div class="md-form form-sm col-sm-6">
-                                                        <i class="fa fa-address-card-o prefix"></i>
-                                                        <input type="text" id="form29" class="form-control validate">
-                                                        <label data-error="wrong" data-success="right" for="form29">Address</label>
-                                                    </div>
-                                                </div>
-                                                
-
-                                                <div class="text-center form-sm mt-2">
-                                                    <button class="btn btn-info btn-rounded">Sign up <i class="fa fa-sign-in ml-1"></i></button>
-                                                </div>
-
-                                            </div>
-                                        </div>
-                                        
-                                        <!--Footer-->
-                                        <div class="modal-footer">
-                                            <div class="options text-right">
-                                                <p class="pt-1">Already have an account? <a href="#" class="blue-text">Log In</a></p>
-                                            </div>
-                                            <button type="button" class="btn btn-outline-info waves-effect ml-auto btn-rounded btn-sm" data-dismiss="modal">Close</button>
-                                        </div>
-                                    </div>
-                                    <!--/.Panel 8-->
-                                </div>
-
-                            </div>
-                        </div>
-                        <!--/.Content-->
-                    </div>
-                </div>
-                <!--Modal: Login / Register Form-->
-
-                
-        <%-- end login modal --%>
-
-    
         <div class="container body-content">
             <asp:ContentPlaceHolder ID="MainContent" runat="server">
             </asp:ContentPlaceHolder>
@@ -305,9 +161,8 @@
                 <!--First column-->
                 <div class="col-lg-3 col-md-6 ml-auto">
                     <h5 class="title mb-3"><strong>About material design</strong></h5>
-                    <p>Material Design (codenamed Quantum Paper) is a design language developed by Google.</p>
-                    <p>Material Design for Bootstrap (MDB) is a powerful Material Design UI KIT for most popular HTML, CSS,
-                        and JS framework - Bootstrap.</p>
+                    <p>Material Design </p>
+                    <p>Material Design for Bootstrap (MDB) is a powerful Material Design UI KIT.</p>
                 </div>
                 <!--/.First column-->
                 <hr class="w-100 clearfix d-sm-none">
@@ -321,12 +176,7 @@
                         <li>
                             <a href="#!">Link 2</a>
                         </li>
-                        <li>
-                            <a href="#!">Link 3</a>
-                        </li>
-                        <li>
-                            <a href="#!">Link 4</a>
-                        </li>
+                      
                     </ul>
                 </div>
                 <!--/.Second column-->
@@ -341,12 +191,7 @@
                         <li>
                             <a href="#!">Link 2</a>
                         </li>
-                        <li>
-                            <a href="#!">Link 3</a>
-                        </li>
-                        <li>
-                            <a href="#!">Link 4</a>
-                        </li>
+                     
                     </ul>
                 </div>
                 <!--/.Third column-->
@@ -361,12 +206,7 @@
                         <li>
                             <a href="#!">Link 2</a>
                         </li>
-                        <li>
-                            <a href="#!">Link 3</a>
-                        </li>
-                        <li>
-                            <a href="#!">Link 4</a>
-                        </li>
+                    
                     </ul>
                 </div>
                 <!--/.Fourth column-->

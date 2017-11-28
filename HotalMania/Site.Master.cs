@@ -50,13 +50,14 @@ namespace HotalMania
 
         protected void master_Page_PreLoad(object sender, EventArgs e)
         {
+
             if (!IsPostBack)
             {
                 // Set Anti-XSRF token
                 ViewState[AntiXsrfTokenKey] = Page.ViewStateUserKey;
                 ViewState[AntiXsrfUserNameKey] = Context.User.Identity.Name ?? String.Empty;
             }
-            else
+            else if (IsPostBack)
             {
                 // Validate the Anti-XSRF token
                 if ((string)ViewState[AntiXsrfTokenKey] != _antiXsrfTokenValue
@@ -76,6 +77,7 @@ namespace HotalMania
         {
             Context.GetOwinContext().Authentication.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
         }
+
     }
 
 }
