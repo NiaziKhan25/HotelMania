@@ -5,19 +5,11 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace HotalMania
+namespace HotalMania.Customer
 {
-    public partial class Login : System.Web.UI.Page
+    public partial class Customer : System.Web.UI.MasterPage
     {
         protected void Page_Load(object sender, EventArgs e)
-        {
-            if(IsPostBack)
-            {
-
-            }
-        }
-
-        protected void btn_login_Click(object sender, EventArgs e)
         {
 
         }

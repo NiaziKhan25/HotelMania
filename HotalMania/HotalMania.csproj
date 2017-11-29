@@ -254,6 +254,9 @@
     <Content Include="Content\Site.css" />
     <Content Include="Content\admin.css" />
     <Content Include="Content\style.css" />
+    <Content Include="Customer\Home.aspx" />
+    <Content Include="Customer\Login.aspx" />
+    <Content Include="Customer\OrderPage.aspx" />
     <Content Include="font\glyphicons-halflings-regular.svg" />
     <Content Include="font\glyphicons-halflings-regular.woff" />
     <Content Include="font\glyphicons-halflings-regular.ttf" />
@@ -294,6 +297,7 @@
     <Content Include="HotelManiaDB.edmx.diagram">
       <DependentUpon>HotelManiaDB.edmx</DependentUpon>
     </Content>
+    <Content Include="Customer\Customer.Master" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="img\lightbox\default-skin.png" />
     <Content Include="img\lightbox\default-skin.svg" />
@@ -578,6 +582,34 @@
     </Compile>
     <Compile Include="Contact.aspx.designer.cs">
       <DependentUpon>Contact.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Customer\Customer.Master.cs">
+      <DependentUpon>Customer.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Customer\Customer.Master.designer.cs">
+      <DependentUpon>Customer.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Customer\Home.aspx.cs">
+      <DependentUpon>Home.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Customer\Home.aspx.designer.cs">
+      <DependentUpon>Home.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Customer\Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Customer\Login.aspx.designer.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Customer\OrderPage.aspx.cs">
+      <DependentUpon>OrderPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Customer\OrderPage.aspx.designer.cs">
+      <DependentUpon>OrderPage.aspx</DependentUpon>
     </Compile>
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
