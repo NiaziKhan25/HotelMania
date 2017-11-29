@@ -101,7 +101,7 @@
                             <a class="btn-floating peach-gradient" href="Default.aspx" id="home_btn"><i class="fa fa-home"></i></a>
                         </li>
                         <li class="nav-item" style="padding:12px;">
-                            <a class="nav-link" href="Contact.aspx"><i class="fa fa-hospital-o"></i>    Hotals</a>
+                            <a class="nav-link" href="Hotels.aspx"><i class="fa fa-hospital-o"></i>    Hotals</a>
                         </li>
                         <li class="nav-item" style="padding:12px;">
                             <a class="nav-link" href="About.cshtml"><i class="fa fa-cutlery" id="food_btn"></i>    Food</a>
