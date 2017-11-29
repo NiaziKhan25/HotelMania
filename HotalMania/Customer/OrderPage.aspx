@@ -1,5 +1,5 @@
 ﻿<%@ Page Title="Order Now" Language="C#" MasterPageFile="~/Customer/Customer.Master" AutoEventWireup="true" CodeBehind="OrderPage.aspx.cs" Inherits="HotalMania.OrderPage" %>
-<asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+<asp:Content ID="Content1" ContentPlaceHolderID="bodyContentPlaceHolder" runat="server">
     <main style="padding-top:1rem;">
     <!--Main layout-->
         <div class="container">
