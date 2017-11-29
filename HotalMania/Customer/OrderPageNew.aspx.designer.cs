@@ -7,19 +7,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace HotalMania {
+namespace HotalMania.Customer {
     
     
-    public partial class OrderPage {
-        
-        /// <summary>
-        /// order_hotal_name control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl order_hotal_name;
+    public partial class OrderPageNew {
         
         /// <summary>
         /// hotal_name control.

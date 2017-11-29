@@ -251,12 +251,13 @@
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\mdb.css" />
     <Content Include="Content\mdb.min.css" />
+    <Content Include="Content\newCompiled.css" />
     <Content Include="Content\Site.css" />
-    <Content Include="Content\admin.css" />
     <Content Include="Content\style.css" />
     <Content Include="Customer\Home.aspx" />
     <Content Include="Customer\Login.aspx" />
     <Content Include="Customer\OrderPage.aspx" />
+    <Content Include="Customer\OrderPageNew.aspx" />
     <Content Include="font\glyphicons-halflings-regular.svg" />
     <Content Include="font\glyphicons-halflings-regular.woff" />
     <Content Include="font\glyphicons-halflings-regular.ttf" />
@@ -275,6 +276,8 @@
       <DependentUpon>HotelManiaDB.edmx</DependentUpon>
       <LastGenOutput>HotelManiaDB.cs</LastGenOutput>
     </Content>
+    <Content Include="img\all\orb1.jpg" />
+    <Content Include="img\all\orb2.jpg" />
     <Content Include="img\icons\hotal-icon.jpg" />
     <Content Include="img\overlays\04.png~ecacfc5c730e25dcad92fe8f4a80cba6c23a4b6b" />
     <Content Include="img\overlays\04.png~HEAD" />
@@ -328,6 +331,7 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\compiled.min.js" />
+    <Content Include="Scripts\customer.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <Content Include="Scripts\jquery-3.1.1.js" />
@@ -337,6 +341,7 @@
     <Content Include="Scripts\mdb.js" />
     <Content Include="Scripts\mdb.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\newCompiled.js" />
     <Content Include="Scripts\popper.min.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
@@ -610,6 +615,13 @@
     </Compile>
     <Compile Include="Customer\OrderPage.aspx.designer.cs">
       <DependentUpon>OrderPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Customer\OrderPageNew.aspx.cs">
+      <DependentUpon>OrderPageNew.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Customer\OrderPageNew.aspx.designer.cs">
+      <DependentUpon>OrderPageNew.aspx</DependentUpon>
     </Compile>
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>

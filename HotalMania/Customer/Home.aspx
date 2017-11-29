@@ -98,7 +98,7 @@
                                                         <button class="btn btn-info btn-rounded btn-sm rotate-btn" data-card="card-1">Check Details  <i class="fa fa-renren ml-1 prefix"></i></button>
                                                     </div>
                                                     <div class="col-lg-2">
-                                                        <a class="btn-floating green btn-rounded btn-sm theme-background-dark" href="#" style="margin-top:3px;"><i class="fa fa-cart-plus"></i></a>
+                                                        <a class="btn-floating green btn-rounded btn-sm theme-background-dark" href="OrderPageNew.aspx" style="margin-top:3px;"><i class="fa fa-cart-plus"></i></a>
                                                     </div>
                                                 </div>
                                              </div>
@@ -113,7 +113,7 @@
                                                 <div class="rounded">
                                                     <h2 class="card-title blue-text"> Serana Hotal</h2>
                                                 </div>
-                                                <div class="text-muted"> <button type="button" class="btn btn-rounded peach-gradient"><i class="fa fa-cart-plus pr-2" aria-hidden="true"></i>Book Now</button></div>
+                                                <div class="text-muted"> <button type="button" class="btn btn-rounded peach-gradient" ><i class="fa fa-cart-plus pr-2" aria-hidden="true"></i>Book Now</button></div>
                                                 <h4 class="card-title green-text"><strong><a>Availabe</a></strong></h4>
                                                 <!--Description-->
                                                 <p class="card-text">the best hotal for ever to hold an event on that place</p>

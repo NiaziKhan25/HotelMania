@@ -7,15 +7,17 @@
     <title></title>
     <asp:ContentPlaceHolder ID="head" runat="server">
             </asp:ContentPlaceHolder>
-           <link href="../Content/bootstrap.min.css" rel="stylesheet">
+    
+    <link href="../Content/bootstrap.min.css" rel="stylesheet"/>
 
     <!-- Material Design Bootstrap -->
-    <link href="../Content/Complied.min.css" rel="stylesheet">
+    <link href="../Content/Complied.min.css" rel="stylesheet"/>
+<%--    <link href="../Content/newCompiled.css" rel="stylesheet"/>--%>
 
     <link href="../Content/style.css" rel="stylesheet">
     <%--<link href="~/Content/font-awesome.css" rel="stylesheet">--%>
 
-    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet"/>
 
 
     <!-- Template styles -->
@@ -235,10 +237,14 @@
     <!-- Bootstrap core JavaScript -->
     <script type="text/javascript" src="../Scripts/bootstrap.min.js"></script>
 
+    <script type="text/javascript" src="../Scripts/customer.js"></script>
+
     <!-- MDB core JavaScript -->
     <%--<script type="text/javascript" src="Scripts/mdb.min.js"></script>
     --%>
     <script type="text/javascript" src="../Scripts/compiled.min.js"></script>
+        <%--<script type="text/javascript" src="../Scripts/newCompiled.js"></script>
+    --%>
     <script>
         new WOW().init();
     </script>
